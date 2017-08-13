@@ -1,6 +1,6 @@
 
 const baseUrl = 'https://api.spotify.com/v1';
-const getAccessToken = () => 'BQB06GePgWTuBLNKY9oTuDGdAiuGOQQr5CRUCzWmRKaB32DYenua3rsoj7KTwImC7K47vUewtTEyzs61_j0U05RPI7UcZYpt3Pqz9I7AsPLX-CDR1ac5DLddmV-HmZrVCYmabkqmf2_qdt3x9OikL6gT40U6kIvgHi2bw3X6okVIWxWX8GT8z18';
+const getAccessToken = () => 'BQCvhdFM4Qv9VaLVHuDAZg9IBrNTCSMmkh-CDOPcxeRGfpfN5f2cHtjnZf9X42CEbngaDPJDm2Eqq0a7lFuvnCPqdu_evnjYSnvZc7XDHyk8fzGw-Y-0Tan6qMjmIQsTZIh04bF38k4uYHCqzpAFDk-68CYn65J3NLeQX_DEK8W3eon6BAND6Qk';
 const market = 'ES' /* TODO: cambiar por cada usuario */
 
 const constructQuery = (params) => {

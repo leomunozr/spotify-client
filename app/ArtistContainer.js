@@ -8,7 +8,7 @@ class ArtistContainer extends React.Component {
     super(props);
     this.state = {
       albums: [],
-      artist: {}
+      artist: { genres: [] }
     };
   }
 

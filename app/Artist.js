@@ -1,25 +1,43 @@
 import React from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { Link } from 'react-router-native';
+import ItemBox from './common/ItemBox';
+import SectionHeader from './common/SectionHeader';
 
-const Artist = ({artist, albums}) => (
-  <View>
-    <View style={styles.title}>
-      <Text>{artist.name}</Text>
+const Artist = ({ artist, albums }) => {
+  return (
+    <View>
+      <View style={styles.header}>
+        <SectionHeader
+          title={artist.name}
+          thumbnail={artist.images ? artist.images[1] : null}
+          subtitle={artist.genres.length ? artist.genres[0] : null} />
+      </View>
+
+      <FlatList
+        data={albums}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => (
+          <Link to={`/album/${item.id}`}>
+            <View style={styles.itembox}>
+              <ItemBox
+                title={item.name}
+                image={item.images.length ? item.images[1].url : null} />
+            </View>
+          </Link>
+        )} />
     </View>
-
-    <FlatList
-      data={albums}
-      keyExtractor={item => item.id}
-      renderItem={({ item }) => <Link to={`/album/${item.id}`}><Text>{item.name}</Text></Link>} />
-
-  </View>
-);
+  );
+}
 
 const styles = StyleSheet.create({
-  title: {
-    alignItems: 'center',
-    justifyContent: 'center'
+  header: {
+    height: 150
+  },
+  itembox: {
+    marginTop: 10,
+    paddingLeft: 5,
+    paddingRight: 5
   }
 })
 

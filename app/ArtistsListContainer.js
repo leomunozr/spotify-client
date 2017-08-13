@@ -23,7 +23,7 @@ class ArtistsListContainer extends React.Component {
   getProps() {
     return {
       artists: this.state.artists,
-      search: this.props.search
+      search: this.props.match.params.search
     };
   }
 
