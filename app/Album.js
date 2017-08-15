@@ -3,10 +3,14 @@ import { FlatList, StyleSheet, Text, View } from 'react-native';
 import ItemBox from './common/ItemBox';
 import SectionHeader from './common/SectionHeader';
 
-const getArtists = (artists) => {
-  if(artists)
+const getArtists = ({ artists }) => {
+  if (artists)
     return artists.map(artist => artist.name).join(' & ');
 };
+const getReleaseYear = ({release_date}) => {
+  if (!release_date) return null;
+  return new Date(release_date).getFullYear();
+}
 
 const Album = ({ album }) => {
   return (
@@ -14,8 +18,8 @@ const Album = ({ album }) => {
       <View style={styles.header}>
         <SectionHeader
           title={album.name}
-          thumbnail={album.images ? album.images[1] : null}
-          subtitle={getArtists(album.artists)} />
+          thumbnail={album.images ? album.images[1].url : null}
+          subtitle={`${getArtists(album)} - ${getReleaseYear(album)}`} />
       </View>
        <FlatList
         data={album.tracks.items}

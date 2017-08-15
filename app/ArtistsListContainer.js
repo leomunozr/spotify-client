@@ -1,6 +1,7 @@
 import React from 'react';
 import { searchArtists } from './spotify-api';
 import ArtistsList from './ArtistsList';
+import NothingFound from './common/NothingFound';
 
 class ArtistsListContainer extends React.Component {
 
@@ -28,9 +29,14 @@ class ArtistsListContainer extends React.Component {
   }
 
   render() {
-    return (
-      <ArtistsList {...this.getProps() } />
-    );
+    if (this.state.artists.length)
+      return (
+        <ArtistsList {...this.getProps() } />
+      );
+    else
+      return (
+        <NothingFound />
+      );
   }
 }
 

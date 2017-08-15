@@ -1,24 +1,26 @@
 import React from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import Breadcrum from './Breadcrum';
 
-const SectionHeader = (props) => (
-  <View style={styles.sectionHeader}>
-    <View style={styles.title}>
+const SectionHeader = (props) => {
+  return (
+    <View style={styles.sectionHeader}>
       <Image
-        style={styles.image}
-        source={{ uri: props.image }} />
-      <Text style={styles.titleSize}>
-        {props.title}
-      </Text>
+        style={styles.thumbnail}
+        source={{ uri: props.thumbnail }} />
+      <View style={styles.title}>
+        <Text style={styles.titleSize}>
+          {props.title}
+        </Text>
+        <View style={styles.subtitle}>
+          <Text style={styles.subtitle.text}>
+            {props.subtitle}
+          </Text>
+        </View>
+      </View>
     </View>
-    <View style={styles.subtitle}>
-      <Text style={styles.subtitle.text}>
-        {props.subtitle}
-      </Text>
-    </View>
-  </View>
-);
+  );
+}
 
 const styles = StyleSheet.create({
   sectionHeader: {
@@ -26,19 +28,24 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderBottomWidth: 1,
     flex: 1,
+    flexDirection: 'row',
     paddingLeft: 10,
     paddingRight: 10
   },
+  thumbnail: {
+    flex: 1,
+    resizeMode: 'contain'
+  },
   title: {
-    flex: 2,
-    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 3,
     justifyContent: 'center',
   },
   titleSize: {
     fontSize: 30
   },
   subtitle: {
-    flex: 1,
+    alignItems: 'center',
     justifyContent: 'center'
   }
 });

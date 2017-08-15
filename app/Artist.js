@@ -10,7 +10,7 @@ const Artist = ({ artist, albums }) => {
       <View style={styles.header}>
         <SectionHeader
           title={artist.name}
-          thumbnail={artist.images ? artist.images[1] : null}
+          thumbnail={artist.images ? artist.images[1].url : null}
           subtitle={artist.genres.length ? artist.genres[0] : null} />
       </View>
 

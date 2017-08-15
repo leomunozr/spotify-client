@@ -9,16 +9,15 @@ import Header from './app/common/Header';
 import Main from './app/Main';
 
 import ArtistList from './app/ArtistsList';
-import artistsMock from './mocks/artist.mock.json';
 
-export default class App extends React.Component {
+class App extends React.Component {
   render() {
     return (
       <Router>
         <View style={styles.container}>
           <Header />
           <View style={styles.content}>
-             <Route exact path="/" component={Main} />
+            <Route exact path="/" component={Main} />
             <Route path="/search/:search" component={ArtistsListContainer} />
             <Route path="/artist/:id" component={ArtistContainer} />
             <Route path="/album/:id" component={AlbumContainer} />
@@ -32,9 +31,16 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    borderColor: 'red',
+    borderWidth: 1,
     flex: 1
   },
   content: {
-    flex: 8
+    alignSelf: 'stretch',
+    flex: 1,
+    borderColor: 'green',
+    borderWidth: 1,
   }
 });
+
+export default App;
