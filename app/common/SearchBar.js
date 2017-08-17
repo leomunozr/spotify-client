@@ -6,14 +6,28 @@ class SearchBar extends React.Component {
 
   constructor(props) {
     super(props);
-    this.sendSearch = this.sendSearch.bind(this);
     this.state = { search: '' };
+    this.clearText = this.clearText.bind(this);
+    this.saveRef = this.saveRef.bind(this);
+    this.sendSearch = this.sendSearch.bind(this);
+  }
+
+  clearText() {
+    this.textInput.setNativeProps({ text: '' });
+    this.setState({ search: '' });
+  }
+  saveRef(component) {
+    this.textInput = component;
   }
 
   sendSearch() {
     let search = this.state.search;
     if (search) {
-      this.props.history.push(`/search/${search}`)
+      this.clearText();
+      this.props.history.push(`/search/${search}`);
+      if (this.props.onSearchSubmit) {
+        this.props.onSearchSubmit();
+      }
     }
   }
 
@@ -28,6 +42,7 @@ class SearchBar extends React.Component {
             source={require('../../images/search.png')} />
         </TouchableHighlight>
         <TextInput
+          ref={this.saveRef}
           autoCorrect={false}
           onChangeText={search => this.setState({ search })}
           onSubmitEditing={this.sendSearch}

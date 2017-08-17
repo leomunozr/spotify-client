@@ -1,33 +1,45 @@
 import React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet,TouchableHighlight, View } from 'react-native';
 import { Link } from 'react-router-native';
 import SearchBar from './SearchBar';
 
-const Header = (props) => (
-  <View style={styles.container}>
-    <View style={styles.header}>
-      <Link to="/">
-        <Image
-          style={styles.item}
-          source={require('../../images/home.png')} />
-      </Link>
-      <Image
-        style={styles.item}
-        source={require('../../images/search.png')} />
-    </View>
-    <View style={styles.searchbar}>
-      <SearchBar />
-    </View>
-  </View>
-);
+class Header extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { showSearchbar: false }
+    this.toggleSearchbar = this.toggleSearchbar.bind(this);
+  }
+
+  toggleSearchbar() {
+    this.setState({ showSearchbar: !this.state.showSearchbar });
+  }
+
+  render() {
+    return (
+      <View>
+        <View style={styles.header}>
+          <Link to="/">
+            <Image
+              style={styles.item}
+              source={require('../../images/home.png')} />
+          </Link>
+          <TouchableHighlight onPress={this.toggleSearchbar}>
+            <Image
+              style={styles.item}
+                source={require('../../images/search.png')} />
+          </TouchableHighlight>
+        </View>
+        {this.state.showSearchbar &&
+          <View style={styles.searchbar}>
+            <SearchBar onSearchSubmit={this.toggleSearchbar} />
+          </View>}
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
-  container: {
-    alignSelf: 'stretch',
-    borderColor: 'red',
-    borderWidth: 1,
-    flex: 1
-  },
   header: {
     backgroundColor: 'cornflowerblue',
     height: 55,
@@ -45,15 +57,15 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   searchbar: {
+    backgroundColor: 'white',
     borderColor: 'black',
     borderWidth: 1,
-    flex: 1,
-    display: 'none',
     paddingTop: 15,
     paddingBottom: 15,
     position: 'absolute',
     top: 55,
-    width: '100%'
+    width: '100%',
+    zIndex: 1
   }
 });
 

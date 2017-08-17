@@ -31,15 +31,11 @@ class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: 'red',
-    borderWidth: 1,
     flex: 1
   },
   content: {
     alignSelf: 'stretch',
-    flex: 1,
-    borderColor: 'green',
-    borderWidth: 1,
+    flex: 4
   }
 });
 
